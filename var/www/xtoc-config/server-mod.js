@@ -13,7 +13,7 @@ function getMacAddress() {
     for (const interfaceName in networkInterfaces) {
         const interfaces = networkInterfaces[interfaceName];
         for (const iface of interfaces) {
-            if (!iface.internal && iface.mac) { // Skip internal interfaces (e.g., loopback)
+            if (!iface.internal && iface.mac) {
                 return iface.mac;
             }
         }
@@ -24,7 +24,6 @@ function getMacAddress() {
 // Function to generate a SHA-256 checksum of the MAC address
 function generatePasswordFromMac() {
     const mac = getMacAddress();
-    console.log(`MAC: ${mac}`);
     return crypto.createHash('sha256').update(mac).digest('hex');
 }
 
@@ -37,10 +36,10 @@ console.log(`Generated Password (SHA-256 of MAC Address): ${password}`);
 // Add Basic Authentication Middleware
 app.use(auth(username, password));
 
-// Serve static files (CSS, images, etc.)
+// Serve static files (CSS, images, JS)
 app.use(express.static(path.join(__dirname, 'public')));
 
-// Serve the styled index page
+// Serve the index page
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'index.html'));
 });

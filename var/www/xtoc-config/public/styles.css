@@ -1,0 +1,149 @@
+@media (max-width: 768px) {
+    nav ul {
+        flex-direction: column; /* Stack menu items vertically */
+    }
+    nav ul li a {
+        text-align: center;
+        padding: 15px; /* Increase padding for touch devices */
+    }
+}
+
+
+/* General styles */
+body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    color: #f0f0f0;
+    background-color: #1e1e1e;
+}
+
+/* Banner styling */
+#banner-container {
+    width: 100%;
+    background-color: #2d2d2d;
+    padding: 10px 0;
+    border-bottom: 1px solid #444;
+}
+
+#banner {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: left;
+}
+
+#banner h1 {
+    font-size: 24px;
+    margin: 0;
+    color: #fff;
+}
+
+/* Navigation menu */
+nav {
+    background-color: #2d2d2d;
+    border-bottom: 1px solid #444;
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: left;
+}
+
+nav ul li {
+    margin: 0;
+    padding: 0;
+}
+
+nav ul li a {
+    display: block;
+    padding: 10px 20px;
+    color: #fff;
+    text-decoration: none;
+    transition: background-color 0.3s;
+}
+
+nav ul li a:hover {
+    color: #96c841; /* Green hover color */
+    background-color: #333; /* Darker background on hover */
+}
+
+nav ul li a.active {
+    font-weight: bold;
+    border-bottom: 2px solid #96c841; 
+}
+
+/* Content styling */
+#content {
+    padding: 20px;
+    max-width: 1200px;
+    margin: 20px auto;
+}
+
+
+/* Banner styling */
+#banner-container {
+    width: 100%;
+    background-color: #2d2d2d;
+    padding: 10px 0;
+    border-bottom: 1px solid #444;
+}
+
+#banner {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#banner-left {
+    display: flex;
+    align-items: center;
+}
+
+#banner-left .logo {
+    height: 40px;
+    margin-right: 10px;
+}
+
+#banner-right .logo {
+    height: 40px;
+}
+
+#banner h1 {
+    font-size: 24px;
+    margin: 0;
+    color: #fff;
+}
+
+/* Footer styling */
+footer {
+    text-align: center;
+    padding: 10px;
+    font-size: 14px;
+    color: #ccc;
+    background-color: #2d2d2d;
+    border-top: 1px solid #444;
+}
+
+#footer-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+footer .footer-logo {
+    height: 40px;
+    margin-top: 10px;
+    opacity: 0.8;
+    transition: opacity 0.3s;
+}
+
+footer .footer-logo:hover {
+    opacity: 1; /* Brighten logo on hover */
+}

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XTOC Appliance Console</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+    <div id="banner-container">
+        <div id="banner">
+            <div id="banner-left">
+                <img src="/logo-sensato.png" alt="Sensato Logo" class="logo">
+            </div>
+            <h1>XTOC Appliance Console</h1>
+        </div>
+    </div>
+
+    <nav id="main-menu">
+        <ul>
+            <li><a href="#network">Network Config</a></li>
+            <li><a href="#docker">Docker Settings</a></li>
+            <li><a href="#security">Security Options</a></li>
+            <li><a href="#logs">View Logs</a></li>
+        </ul>
+    </nav>
+
+    <nav id="secondary-menu">
+        <ul>
+            <li><a href="#zeek">Zeek/Bro</a></li>
+            <li><a href="#ossec">OSSEC</a></li>
+            <li><a href="#forwarder">Chronicle Forwarder Config</a></li>
+            <li><a href="#terminal">Terminal Emulator</a></li>
+        </ul>
+    </nav>
+
+    <div id="content">
+        <p>Welcome to the XTOC configuration manager! Use the menus above to navigate.</p>
+        <h2>System Information</h2>
+        <div id="system-info">
+            <p>Loading system information...</p>
+        </div>
+    </div>
+</body>
+
+<footer>
+    <div id="footer-content">
+        <p>&copy; 2024 XTOC-CloudWave-Sensato CaaS. All rights reserved.</p>
+        <img src="/logo-cloudwave.png" alt="CloudWave Logo" class="footer-logo">
+    </div>
+</footer>
+
+<script>
+    // Fetch and display system information
+    fetch('/api/system-info')
+        .then(response => response.json())
+        .then(data => {
+            const infoDiv = document.getElementById('system-info');
+            infoDiv.innerHTML = `
+                <ul>
+                    <li><strong>Hostname:</strong> ${data.hostname}</li>
+                    <li><strong>IP Addresses:</strong> ${data.ipAddresses.join(', ')}</li>
+                    <li><strong>OS Type:</strong> ${data.osType}</li>
+                    <li><strong>OS Release:</strong> ${data.osRelease}</li>
+                    <li><strong>Platform:</strong> ${data.platform}</li>
+                    <li><strong>Uptime:</strong> ${Math.floor(data.uptime / 60)} minutes</li>
+                </ul>
+            `;
+        })
+        .catch(error => {
+            console.error('Error fetching system information:', error);
+            const infoDiv = document.getElementById('system-info');
+            infoDiv.innerHTML = `<p>Error loading system information.</p>`;
+        });
+</script>
+
+</html>
