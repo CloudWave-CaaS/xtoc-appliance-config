@@ -1,0 +1,10 @@
+#!/bin/sh
+#retrieve IP
+IP_ADDRESS=$(hostname -I | awk '{print $1}')
+
+#Define the web service port
+PORT=8080
+
+#Display
+echo "XTOC Appliance Configuration visit:"
+echo "http://$IP_ADDRESS:$PORT"
