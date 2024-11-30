@@ -65,6 +65,9 @@ app.get('/api/system-info', (req, res) => {
     res.json(systemInfo);
 });
 
+app.use('/node_modules', express.static(path.join(__dirname, 'node_modules')));
+
+
 // Start the server
 app.listen(port, () => {
     console.log(`Web service running at http://localhost:${port}`);
