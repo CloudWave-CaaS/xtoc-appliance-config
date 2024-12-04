@@ -4,7 +4,9 @@
 WEBROOT_SOURCE="/mnt/xtoc-appliance-config/var/www/xtoc-config/*"
 WEBROOT_DEST="/var/www/xtoc-config"
 SERVICE_NAME="xtoc-config"
-NODE_VERSION="18.x"  # Update as needed
+NODE_VERSION="20.x"  # Update as needed
+
+set -e  # Exit immediately if a command fails
 
 echo "Updating system and installing dependencies..."
 sudo apt update -y
@@ -26,7 +28,15 @@ sudo chown -R $USER:$USER "$WEBROOT_DEST"
 
 echo "Installing application dependencies..."
 cd "$WEBROOT_DEST"
-npm install
+
+# Install dependencies listed in package.json
+if [ -f "package.json" ]; then
+    npm install
+else
+    echo "No package.json found. Initializing and installing required dependencies..."
+    npm init -y
+    npm install basic-auth-connect express
+fi
 
 echo "Creating systemd service for $SERVICE_NAME..."
 SERVICE_FILE="/etc/systemd/system/$SERVICE_NAME.service"
