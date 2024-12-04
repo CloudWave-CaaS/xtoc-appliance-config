@@ -12,6 +12,7 @@ eXtended Tactical Operations Center (XTOC) configuration and documentation - an 
   - Zeek v 7.0.4 (https://github.com/zeek/zeek-docker)
   - Chronicle Forwarder (https://cloud.google.com/chronicle/docs/install/install-forwarder#installdockerlinux)
 
+# XTOC-Sentinel-x.x.x
 ## 0.0.1 Notes
 - Ubuntu 22.04.5 LTS (Linux 5.15.0-126 Generic)
 - VBOX Guest Additions + NAGENT autostart e.g. visit: N-Able Central (https://n-able.com)
@@ -29,3 +30,9 @@ eXtended Tactical Operations Center (XTOC) configuration and documentation - an 
 - WebGUI - `/var/www/xtoc-config/`
   - Node v20.18.1
   - npm 10.8.2 
+
+# XTOC-VSCAN-x.x.x
+## 1.0.0 Notes
+- Ubuntu 24.04.1 LTS
+- Run install/setup_vscan.sh
+- Make sure you have at least 20GB.

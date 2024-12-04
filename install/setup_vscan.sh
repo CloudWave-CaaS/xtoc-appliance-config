@@ -54,9 +54,9 @@ echo "Starting Greenbone Community Edition containers..."
 docker compose -f "$DOWNLOAD_DIR/docker-compose-22.4.yml" -p greenbone-community-edition up -d
 
 # Set up admin user password
-read -s -p "Enter password for admin user: " password
-echo
-docker compose -f "$DOWNLOAD_DIR/docker-compose-22.4.yml" -p greenbone-community-edition \
-    exec -u gvmd gvmd gvmd --user=admin --new-password="$password"
+#read -s -p "Enter password for admin user: " password
+#echo
+#docker compose -f "$DOWNLOAD_DIR/docker-compose-22.4.yml" -p greenbone-community-edition \
+#    exec -u gvmd gvmd gvmd --user=admin --new-password="$password"
 
 echo "Setup complete. Access the Greenbone Security Assistant web interface at http://127.0.0.1:9392"
