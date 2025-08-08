@@ -1,0 +1,111 @@
+[
+    {
+      "name": "Zeek",
+      "description": "Network security monitor for detecting suspicious activity.",
+      "version": "5.2.1",
+      "iconPath": "/pkg/zeek.png",
+      "isInstalled": false,
+      "upgradeAvailable": false,
+      "command": "sudo apt install zeek"
+    },
+    {
+      "name": "OSSEC",
+      "description": "Host-based intrusion detection system for log analysis and integrity checking.",
+      "version": "3.7.0",
+      "iconPath": "/pkg/ossec.png",
+      "isInstalled": true,
+      "upgradeAvailable": true,
+      "command": "sudo apt install ossec-hids"
+    },
+    {
+      "name": "Chronicle Forwarder",
+      "description": "Google Chronicle log forwarder for ingest.",
+      "version": "1.12.0",
+      "iconPath": "/pkg/chronicle.png",
+      "isInstalled": true,
+      "upgradeAvailable": false,
+      "command": "sudo dpkg -i chronicle-forwarder.deb"
+    },
+    {
+      "name": "Docker",
+      "description": "Container runtime for packaging and running applications.",
+      "version": "25.0.4",
+      "iconPath": "/pkg/docker.png",
+      "isInstalled": false,
+      "upgradeAvailable": false,
+      "command": "sudo apt install docker-ce docker-ce-cli containerd.io"
+    },
+    {
+      "name": "Splunk Universal Forwarder",
+      "description": "Lightweight Splunk agent for sending logs to a Splunk indexer.",
+      "version": "9.1.2",
+      "iconPath": "/pkg/splunk-uf.png",
+      "isInstalled": false,
+      "upgradeAvailable": false,
+      "command": "sudo dpkg -i splunkforwarder.deb"
+    },
+    {
+      "name": "Kali Pro-Tools",
+      "description": "Collection of penetration testing tools from Kali Linux.",
+      "version": "2025.1",
+      "iconPath": "/pkg/kali.png",
+      "isInstalled": false,
+      "upgradeAvailable": false,
+      "command": "sudo apt install kali-linux-top10"
+    },
+    {
+      "name": "BlueOrange Compliance",
+      "description": "Compliance scanning and reporting suite for HIPAA, PCI, and SOC2.",
+      "version": "4.5.0",
+      "iconPath": "/pkg/blueorange.jpg",
+      "isInstalled": true,
+      "upgradeAvailable": true,
+      "command": "sudo bash install-blueorange.sh"
+    },
+    {
+      "name": "Nmap",
+      "description": "Network scanner for host discovery and port scanning.",
+      "version": "7.95",
+      "iconPath": "/pkg/nmap.png",
+      "isInstalled": false,
+      "upgradeAvailable": false,
+      "command": "sudo apt install nmap"
+    },
+    {
+      "name": "Fail2Ban",
+      "description": "Intrusion prevention software to ban IPs showing malicious signs.",
+      "version": "1.1.0",
+      "iconPath": "/pkg/fail2ban.png",
+      "isInstalled": true,
+      "upgradeAvailable": false,
+      "command": "sudo apt install fail2ban"
+    },
+    {
+      "name": "Wireshark",
+      "description": "Packet analyzer for network troubleshooting and analysis.",
+      "version": "4.2.3",
+      "iconPath": "/pkg/wireshark.png",
+      "isInstalled": false,
+      "upgradeAvailable": false,
+      "command": "sudo apt install wireshark"
+    },
+    {
+      "name": "OpenVAS",
+      "description": "Vulnerability scanning platform for identifying security issues.",
+      "version": "22.9",
+      "iconPath": "/pkg/openvas.png",
+      "isInstalled": false,
+      "upgradeAvailable": false,
+      "command": "sudo apt install openvas"
+    },
+    {
+      "name": "Suricata",
+      "description": "High-performance IDS/IPS and network security monitoring engine.",
+      "version": "7.0.3",
+      "iconPath": "/pkg/suricata.png",
+      "isInstalled": true,
+      "upgradeAvailable": false,
+      "command": "sudo apt install suricata"
+    }
+  ]
+  

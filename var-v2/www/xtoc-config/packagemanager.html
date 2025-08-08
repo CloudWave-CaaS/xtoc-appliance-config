@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>XTOC | Package Manager</title>
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <header>
+    <img src="/logo-cloudwave.png" alt="CloudWave Logo" />
+    <h1>Package Manager</h1>
+  </header>
+  <nav id="main-menu">
+    <ul>
+        <li><a href="../">XTOC-Config Home</a></li>
+        <li><a href="#docker">Settings</a></li>
+        <li><a href="#security">Security</a></li>
+        <li><a href="#logs">View Logs</a></li>
+    </ul>
+</nav>
+
+<nav id="secondary-menu">
+    <ul>
+      <!-- was: Zeek/Bro + OSSEC -->
+
+      <li><a href="#terminal">Terminal Emulator</a></li>
+    </ul>
+  </nav>
+  <div class="container">
+    <main>
+      <!-- Tiles -->
+      <section>
+        <div class="grid" id="pkgGrid" aria-label="Packages"></div>
+      </section>
+
+      <!-- Details panel -->
+      <aside id="details">
+        <div class="empty">Select a package to view details.</div>
+      </aside>
+    </main>
+  </div>
+
+  <script>
+    const gridEl = document.getElementById('pkgGrid');
+    const detailsEl = document.getElementById('details');
+
+    // Fallback icon if missing
+    const FALLBACK_ICON = 'data:image/svg+xml;utf8,' + encodeURIComponent(`
+      <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64">
+        <rect width="100%" height="100%" rx="8" ry="8" fill="#2a2a2a"/>
+        <path d="M12 26h40v26H12z" fill="#3a3a3a"/>
+        <path d="M12 26l20-14 20 14H12z" fill="#4a4a4a"/>
+      </svg>
+    `);
+
+    async function loadPackages() {
+      const res = await fetch('/pkg/packages.json', { cache: 'no-store' });
+      if (!res.ok) throw new Error('Failed to load packages.json');
+      return res.json();
+    }
+
+    function pill(text, cls='') {
+      const span = document.createElement('span');
+      span.className = `pill ${cls}`;
+      span.textContent = text;
+      return span;
+    }
+
+    function renderTiles(pkgs) {
+      gridEl.innerHTML = '';
+      if (!pkgs.length) {
+        gridEl.innerHTML = '<div class="empty">No packages defined.</div>';
+        return;
+      }
+      pkgs.forEach(pkg => {
+        const tile = document.createElement('button');
+        tile.className = 'tile';
+        tile.setAttribute('type', 'button');
+        tile.setAttribute('aria-label', `${pkg.name} ${pkg.isInstalled ? 'installed' : 'not installed'}`);
+
+        const img = document.createElement('img');
+        img.src = pkg.iconPath || FALLBACK_ICON;
+        img.alt = `${pkg.name} icon`;
+        img.onerror = () => { img.src = FALLBACK_ICON; };
+
+        const name = document.createElement('div');
+        name.className = 'name';
+        name.textContent = pkg.name;
+
+        const meta = document.createElement('div');
+        meta.className = 'meta';
+        meta.appendChild(pill(pkg.isInstalled ? 'Installed' : 'Not installed', pkg.isInstalled ? 'ok' : ''));
+        if (pkg.upgradeAvailable) meta.appendChild(pill('Update available', 'warn'));
+        meta.appendChild(pill(`v${pkg.version || 'n/a'}`));
+
+        tile.append(img, name, meta);
+        tile.addEventListener('click', () => showDetails(pkg));
+        gridEl.appendChild(tile);
+      });
+    }
+
+    function showDetails(pkg) {
+      detailsEl.innerHTML = '';
+      const h = document.createElement('h2');
+
+      const icon = document.createElement('img');
+      icon.src = pkg.iconPath || FALLBACK_ICON;
+      icon.width = 28; icon.height = 28; icon.style.objectFit = 'contain';
+      icon.alt = '';
+
+      const title = document.createElement('span');
+      title.textContent = pkg.name;
+
+      h.append(icon, title);
+
+      const desc = document.createElement('div');
+      desc.className = 'row';
+      desc.textContent = pkg.description || 'No description provided.';
+
+      const meta = document.createElement('div');
+      meta.className = 'row';
+      meta.innerHTML = `
+        <div><strong>Version:</strong> ${pkg.version || 'n/a'}</div>
+        <div><strong>Status:</strong> ${pkg.isInstalled ? 'Installed' : 'Not installed'}</div>
+        <div><strong>Upgrade available:</strong> ${pkg.upgradeAvailable ? 'Yes' : 'No'}</div>
+      `;
+
+      const cmd = document.createElement('div');
+      cmd.className = 'row';
+      cmd.innerHTML = `<div><strong>Script/Command:</strong> <span class="code">${(pkg.command || '').replaceAll('<','&lt;').replaceAll('>','&gt;')}</span></div>`;
+
+      const actions = document.createElement('div');
+      actions.className = 'row';
+      const btn = document.createElement('button');
+      btn.className = 'primary';
+      btn.textContent = pkg.isInstalled ? 'Reinstall / Repair' : 'Install';
+      btn.addEventListener('click', () => {
+        alert(`${btn.textContent} action would run:\n\n${pkg.command || '(no command)'}\n\n(This is a concept—no action executed.)`);
+      });
+      const hint = document.createElement('div');
+      hint.className = 'muted';
+      hint.textContent = 'Concept only: button does not execute on the server.';
+
+      actions.append(btn, hint);
+
+      detailsEl.append(h, desc, meta, cmd, actions);
+    }
+
+    (async () => {
+      try {
+        const pkgs = await loadPackages();
+        renderTiles(pkgs);
+      } catch (e) {
+        gridEl.innerHTML = `<div class="empty">Error: ${e.message}</div>`;
+      }
+    })();
+  </script>
+</body>
+</html>
