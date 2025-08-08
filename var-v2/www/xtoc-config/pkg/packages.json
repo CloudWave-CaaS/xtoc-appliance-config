@@ -106,6 +106,33 @@
       "isInstalled": true,
       "upgradeAvailable": false,
       "command": "sudo apt install suricata"
-    }
+    },
+    {
+        "name": "SentinelOne Agent",
+        "description": "Next-gen AI-powered endpoint protection platform.",
+        "version": "24.1.2",
+        "isInstalled": false,
+        "upgradeAvailable": false,
+        "command": "sudo ./install-sentinelone.sh",
+        "iconPath": "/pkg/sentinelone.png"
+      },
+      {
+        "name": "N-Able RMM Agent",
+        "description": "Remote monitoring and management agent for infrastructure.",
+        "version": "22.9.5",
+        "isInstalled": false,
+        "upgradeAvailable": true,
+        "command": "sudo ./install-nable.sh",
+        "iconPath": "/pkg/nable.png"
+      },
+      {
+        "name": "OpenTelemetry Bindplane",
+        "description": "Observability pipeline for metrics, logs, and traces.",
+        "version": "1.8.0",
+        "isInstalled": false,
+        "upgradeAvailable": false,
+        "command": "sudo ./install-otel-bindplane.sh",
+        "iconPath": "/pkg/otel-bindplane.png"
+      }
   ]
   
