@@ -29,7 +29,14 @@ eXtended Tactical Operations Center (XTOC) configuration and documentation - an 
 - Run install/setup_node.sh (make sure that /mnt/ is available--- you may need VBOXSF)
 - WebGUI - `/var/www/xtoc-config/`
   - Node v20.18.1
-  - npm 10.8.2 
+  - npm 10.8.2
+ 
+## 1.0.2 Notes
+- Runas Service (`systemctl status xtoc-config.service`
+- `xtocsvc`
+
+## 2.0.0 Notes
+- Added PackageManager
 
 # XTOC-VSCAN-x.x.x
 ## 1.0.0 Notes
