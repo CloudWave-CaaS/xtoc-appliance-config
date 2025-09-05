@@ -156,6 +156,43 @@ footer .footer-logo:hover {
     overflow: hidden;
 }
 
+/* Two-column content layout with responsive fallback */
+#content.two-col {
+  display: grid;
+  grid-template-columns: 1fr 360px;
+  gap: 20px;
+  align-items: start;
+}
+
+#right-pane {
+  background: var(--tile-bg, #1e1e1e);
+  border: 1px solid var(--tile-border, #333);
+  border-radius: var(--radius, 8px);
+  padding: 12px;
+  position: sticky; /* keep visible while scrolling on desktop */
+  top: 12px;
+  text-align: center;
+}
+
+#right-pane img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  border-radius: calc(var(--radius, 8px) - 2px);
+  margin: 0 auto;
+}
+
+@media (max-width: 900px) {
+  #content.two-col {
+    grid-template-columns: 1fr;
+  }
+  #right-pane {
+    position: static; /* no sticky on narrow screens */
+    margin-top: 12px;
+  }
+}
+
+
 /*STYLES*/
 /* ===== Package Manager (dark) ===== */
 /* ===== Package Manager Layout ===== */

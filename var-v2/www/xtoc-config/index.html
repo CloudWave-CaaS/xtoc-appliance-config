@@ -36,18 +36,26 @@
         </ul>
       </nav>
 
-    <div id="content">
-        <p>Welcome to the XTOC configuration manager! Use the menus above to navigate.</p>
-        <h2>System Information</h2>
-        <div id="system-info" style="display: block;">
+      <div id="content" class="two-col">
+        <section id="left-pane">
+          <p>Welcome to the XTOC configuration manager! Use the menus above to navigate.</p>
+          <h2>System Information</h2>
+          <div id="system-info" style="display: block;">
             <p>Loading system information...</p>
-        </div>
-        <div id="terminal-section" style="display: none;">
+          </div>
+      
+          <div id="terminal-section" style="display: none;">
             <h2>Terminal Emulator</h2>
             <div id="terminal-container" style="width: 100%; height: 400px;"></div>
-        </div>
-        
-    </div>
+          </div>
+        </section>
+      
+        <aside id="right-pane" aria-label="Appliance">
+          <img src="/xtoc-appliance.png" alt="XTOC Appliance" />
+          <div id="server-caption" class="muted" style="margin-top:8px;">Loading host…</div>
+        </aside>
+      </div>
+      
 </body>
 
 <footer>
@@ -73,6 +81,8 @@
                     <li><strong>Uptime:</strong> ${Math.floor(data.uptime / 60)} minutes</li>
                 </ul>
             `;
+            const cap = document.getElementById('server-caption');
+  if (cap) cap.textContent = `Host: ${data.hostname}`;
         })
         .catch(error => {
             console.error('Error fetching system information:', error);
